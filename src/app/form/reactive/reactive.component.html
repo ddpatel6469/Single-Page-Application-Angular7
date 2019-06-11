@@ -1,0 +1,38 @@
+<form [formGroup]="userForm">
+    <div class="form-group">
+      <label class="control-label">Firstname</label>
+      <input type="text" class="form-control" placeholder="Firstname" formControlName="firstname" />
+      <div *ngIf="!userForm.get('firstname').valid && userForm.get('firstname').touched">
+        <div class="alert alert-danger" *ngIf="userForm.get('firstname').errors.required">Please enter firstname</div>
+        <div class="alert alert-danger" *ngIf="userForm.get('firstname').errors.minlength">Firstname needs to be 5 characters long</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Lastname</label>
+      <input type="text" class="form-control" placeholder="Lastname" formControlName="lastname"/>
+      <div *ngIf="!userForm.get('lastname').valid && userForm.get('lastname').touched">
+        <div class="alert alert-danger" *ngIf="userForm.get('lastname').errors.required">Please enter lastname</div>
+        <div class="alert alert-danger" *ngIf="userForm.get('lastname').errors.minlength">Lastname needs to be 5 characters long</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <input type="text" class="form-control" placeholder="Email" formControlName="email"/>
+      <div *ngIf="!userForm.get('email').valid && userForm.get('email').touched">
+        <div class="alert alert-danger" *ngIf="userForm.get('email').errors.required">Please enter email</div>
+        <div class="alert alert-danger" *ngIf="userForm.get('email').errors.pattern">Please enter a valid email</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label">
+        <input type="radio" value="Male" formControlName="gender"/>Male
+      </label>
+      <label class="control-label">
+        <input type="radio" value="Female" formControlName="gender"/>Female
+      </label>
+      <div *ngIf="!userForm.get('gender').valid && userForm.get('gender').touched">
+        <div class="alert alert-danger" *ngIf="userForm.get('gender').errors.required">Please select gender</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" [disabled]="!userForm.valid" (click)="createUser()">Save</button>
+  </form>
